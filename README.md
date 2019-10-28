@@ -20,3 +20,7 @@ A small search engine, using **reverse index**. Generations on the index (add/re
 
 * SidoShiro
 
+## TODO
+
+* Add a nice web interface
+
