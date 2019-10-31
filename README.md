@@ -4,7 +4,21 @@ A small search engine, using **reverse index**. Generations on the index (add/re
 
 > The original work was a project given in class by Sylvain Utard (Algolia)
 
-## Usage
+### Requirements
+
+CLI version was only tested on Linux (Manjaro)
+
+* CLI version:
+  * python3
+  * make
+
+* Web version:
+  * npm
+  * python
+  * flask
+  * ***TODO***
+
+## Usage : CLI Search Engine
 
 * Command Line Search Engine
 
@@ -12,7 +26,7 @@ A small search engine, using **reverse index**. Generations on the index (add/re
 make run
 ```
 
-> Type '?' or 'help' to use the cmd search engine
+> Type '?' or 'help' to use the cli search engine
 
 **Features:**
 
@@ -22,6 +36,10 @@ make run
 * Save Index
 * Load Index
 * Remove files from Index
+
+## Usage : Web Search Engine
+
+***Comming soon***
 
 # Parts
 
@@ -43,4 +61,4 @@ make run
 ## TODO
 
 * Add a nice web interface
-
+* Improve CLI
