@@ -28,6 +28,7 @@ make run
 
 > Type '?' or 'help' to use the cli search engine
 
+
 **Features:**
 
 * Search words, give documents
@@ -36,6 +37,21 @@ make run
 * Save Index
 * Load Index
 * Remove files from Index
+
+### Help and Commands
+
+
+| Commands           | Desc. |
+|--------------------|-------|
+| search [words]     | Return result of the docs were the words are present (AND operation by default) |
+| search_or [words]  | Make search operation, but any document with at least one of words (OR operation) |
+| add [paths]        | Index all file that are in the paths, create a new generation |
+| remove [documents] | Remove documents, must be full path, update in a new generation |
+| load [index]       | Load an index file |
+| save [index]       | Save current index (+ generation) into index |
+| exit|quit          | Stop Engine |
+| version            | Show version |
+| help|h|?           | Show help |
 
 ## Usage : Web Search Engine
 
