@@ -5,8 +5,8 @@ from Processors import *
 import os.path
 
 
-def index_paths(list, core_index):
-    for path in list:
+def index_paths(l, core_index):
+    for path in l:
         docs = fetch(path)
         tokens = make_tokens(docs, Processors)
 
