@@ -1,3 +1,6 @@
 data/*
 TP.pdf
 .ipynb_checkpoints/*
+src/old/*
+*idea*
+*__pycache__*
