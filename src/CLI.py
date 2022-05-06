@@ -38,6 +38,7 @@ def error_no_argument(x):
 core_index = IncrementalIndex()
 core_index_name = "undefined"
 searcher = IncrementalIndexSearcher(core_index)
+index_changed = False
 
 print(" * SE - " + version + " * ")
 # CLI
@@ -60,6 +61,7 @@ while True:
     if "add" == x[0] and error_no_argument(x):
         doc_paths = x[1:]
         index_paths(doc_paths, core_index)
+        index_changed = True
 
     if "remove" == x[0] and error_no_argument(x):
         doc_paths = x[1:]
@@ -78,6 +80,28 @@ while True:
         save_incr_index(core_index, x[1])
         print("Index saved in file " + x[1])
 
+    if "new" == x[0]:
+        if index_changed:
+            execute_new = False
+            while True:
+                print("Current index has unsaved changed do you want to continue ? Y/n")
+                s = input("Y or n > ")
+                x1 = s.split()
+                if len(x1) > 0 and x1[0] != 'Y':
+                    print("(don't execute new command, index " + core_index_name + " still in use)")
+                    execute_new = False
+                    break
+                elif len(x1) > 0 and x1[0] == 'Y':
+                    execute_new = True
+                    break
+            if not execute_new:
+                continue
+        index_changed = False
+        # Create Empty index
+        core_index = IncrementalIndex()
+        if len(x) >= 2:
+            core_index_name = x[1]
+
     if "exit" == x[0] or "quit" == x[0]:
         print("Stop search engine...")
         break
@@ -94,20 +118,20 @@ while True:
               )
 
     if "help" == x[0] or "h" == x[0] or "?" == x[0]:
-        print("Search Engine Help :\n"
-              "\n"
-              "  Commands:\n"
-              "  ---------\n"
-              "search [words]     : Return result of the docs were the words are present (AND operation by default)\n"
-              "search_or [words]  : Make search operation, but any document with at least one of words (OR operation)\n"
-              "add [paths]        : Index all file that are in the paths, create a new generation\n"
-              "remove [documents] : Remove documents, must be full path, update in a new generation\n"
-              "status             : Give information about the loaded index\n" 
-              "load [index]       : Load an index file\n"
-              "save [index]       : Save current index (+ generation) into index\n"
-              "exit|quit          : Stop Engine\n"
-              "version            : Show version\n"
-              "help|h|?           : Show help\n")
-
-
-
+        print(
+            "Search Engine Help :\n"
+            "\n"
+            "  Commands:\n"
+            "  ---------\n"
+            "search [words]     : Return result of the docs were the words are present (AND operation by default)\n"
+            "search_or [words]  : Make search operation, but any document with at least one of words (OR operation)\n"
+            "add [paths]        : Index all files that are in the paths, create a new generation\n"
+            "remove [documents] : Remove documents, must be full path, update in a new generation\n"
+            "status             : Give information about the loaded index\n"
+            "load [index]       : Load an index file\n"
+            "save [index]       : Save current index (+ generation) into index\n"
+            "new (index_name)   : Create a new empty index, use the 'add' command to index files, optional index name\n"
+            "exit|quit          : Stop Engine\n"
+            "version            : Show version\n"
+            "help|h|?           : Show help\n"
+        )
