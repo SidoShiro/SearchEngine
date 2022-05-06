@@ -35,7 +35,7 @@ def error_no_argument(x):
 # core_index = IncrementalIndex()
 # index_paths(test_path, core_index)
 
-core_index = None
+core_index = IncrementalIndex()
 core_index_name = "undefined"
 searcher = IncrementalIndexSearcher(core_index)
 
