@@ -85,6 +85,14 @@ while True:
     if "version" == x[0]:
         print("Search Engine " + version + " -- SidoShiro on GitHub (2019)\n\n")
 
+    if "status" == x[0]:
+        print("Current index: " + searcher.get_index_name() + "\n" +
+              "number of indexed docs: " + str(len(searcher.getIndex().docIdToGeneration)) + "\n" +
+              "number of indexed words (in last generation): " + str(len(searcher.index.generations[-1].wordToDocIds)) +
+              "\n" +
+              "number of generations: " + str(len(searcher.index.generations))
+              )
+
     if "help" == x[0] or "h" == x[0] or "?" == x[0]:
         print("Search Engine Help :\n"
               "\n"
@@ -94,6 +102,7 @@ while True:
               "search_or [words]  : Make search operation, but any document with at least one of words (OR operation)\n"
               "add [paths]        : Index all file that are in the paths, create a new generation\n"
               "remove [documents] : Remove documents, must be full path, update in a new generation\n"
+              "status             : Give information about the loaded index\n" 
               "load [index]       : Load an index file\n"
               "save [index]       : Save current index (+ generation) into index\n"
               "exit|quit          : Stop Engine\n"
