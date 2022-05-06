@@ -36,6 +36,7 @@ def error_no_argument(x):
 # index_paths(test_path, core_index)
 
 core_index = None
+core_index_name = "undefined"
 searcher = IncrementalIndexSearcher(core_index)
 
 print(" * SE - " + version + " * ")
@@ -68,6 +69,7 @@ while True:
     if "load" == x[0] and error_no_argument(x):
         if os.path.exists(x[1]):
             core_index = load_incr_index(x[1])
+            core_index_name = x[1]
             print("Index loaded from file " + x[1])
         else:
             print("Error: Try to load index from file " + x[1] + ", but " + x[1] + " doesn't exist!")
