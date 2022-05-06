@@ -4,6 +4,8 @@ from IncrementalIndexSearcher import *
 from Processors import *
 import os.path
 
+version = "v1.0"
+
 
 def index_paths(l, core_index):
     for path in l:
@@ -28,16 +30,15 @@ def error_no_argument(x):
     return True
 
 
-test_path = ["test"]
+# Old config
+# test_path = ["test"]
+# core_index = IncrementalIndex()
+# index_paths(test_path, core_index)
 
-core_index = IncrementalIndex()
-
-index_paths(test_path, core_index)
-
+core_index = None
 searcher = IncrementalIndexSearcher(core_index)
 
-
-
+print(" * SE - " + version + " * ")
 # CLI
 while True:
     searcher.setIndex(core_index)
@@ -80,7 +81,7 @@ while True:
         break
 
     if "version" == x[0]:
-        print("Search Engine v1.0 -- SidoShiro on GitHub (2019)\n\n")
+        print("Search Engine " + version + " -- SidoShiro on GitHub (2019)\n\n")
 
     if "help" == x[0] or "h" == x[0] or "?" == x[0]:
         print("Search Engine Help :\n"
