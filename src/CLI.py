@@ -43,7 +43,7 @@ index_changed = False
 print(" * SE - " + version + " * ")
 # CLI
 while True:
-    searcher.setIndex(core_index)
+    searcher.setIndex(core_index, core_index_name)
     s = input("> ")
     x = s.split()
 
@@ -101,6 +101,8 @@ while True:
         core_index = IncrementalIndex()
         if len(x) >= 2:
             core_index_name = x[1]
+        else:
+            core_index_name = "undefined"
 
     if "exit" == x[0] or "quit" == x[0]:
         print("Stop search engine...")
@@ -110,12 +112,14 @@ while True:
         print("Search Engine " + version + " -- SidoShiro on GitHub (2019)\n\n")
 
     if "status" == x[0]:
-        print("Current index: " + searcher.get_index_name() + "\n" +
-              "number of indexed docs: " + str(len(searcher.getIndex().docIdToGeneration)) + "\n" +
-              "number of indexed words (in last generation): " + str(len(searcher.index.generations[-1].wordToDocIds)) +
-              "\n" +
-              "number of generations: " + str(len(searcher.index.generations))
-              )
+        print("Current index: " + searcher.get_index_name())
+        if searcher.getIndex():
+            print("number of indexed docs: " + str(len(searcher.getIndex().docIdToGeneration)))
+        if searcher.getIndex() and searcher.getIndex().generations and len(searcher.getIndex().generations) > 0:
+            print("number of indexed words (in last generation): " +
+                  str(len(searcher.getIndex().generations[-1].wordToDocIds)))
+        if searcher.getIndex() and searcher.getIndex().generations:
+            print("number of generations: " + str(len(searcher.getIndex().generations)))
 
     if "help" == x[0] or "h" == x[0] or "?" == x[0]:
         print(
