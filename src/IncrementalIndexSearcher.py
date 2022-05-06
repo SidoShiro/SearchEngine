@@ -8,16 +8,22 @@ class IncrementalIndexSearcher:
             print("Warning: No index linked to searcher!")
         else:
             self.index = index_incr
+            self.index_name = "default"
 
     def load(self, path):
         with open(path + "/" + "index_incr.bin", "rb") as f:
             self.index = pickle.load(f)
+            self.index_name = "index_incr.bin"
 
     def getIndex(self):
         return self.index
 
-    def setIndex(self, index):
+    def get_index_name(self):
+        return self.index_name
+
+    def setIndex(self, index, index_name="undefined"):
         self.index = index
+        self.index_name = index_name
 
     def id_to_url(self, id_l):
         res = []
@@ -49,7 +55,6 @@ class IncrementalIndexSearcher:
         """
         gs = self.index.generations
         res = []
-        gl = len(self.index.generations)
         current_urls = []
         for g in reversed(gs):  # Get last first
             if not (word in g.wordToDocIds):
